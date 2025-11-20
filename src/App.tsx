@@ -1,9 +1,9 @@
 import './App.css'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from './supabase-client'
 
 
-// Create, Read, Update, and Delete
+// Create, Read, Update, and Deletew
 
 //title and description, type is all 'text'
 
