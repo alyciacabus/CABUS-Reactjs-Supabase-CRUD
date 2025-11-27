@@ -16,6 +16,9 @@ description: string
 }
 
 export default function App() {
+
+const tableName = import.meta.env.VITE_TABLE_NAME;   
+
 const [newTask, setNewTask] = useState({title: "", description: ""});
 const [showTask, setShowTask] = useState<Task[]>([]);
 const [newDesc, setNewDesc] = useState('');
@@ -25,7 +28,7 @@ const [newTitle, setNewTitle] = useState('');
 //Delete function:
 const deleteTask = async (id: number) => {
 const { error } = await supabase
-.from('tasks')
+.from(tableName)
 .delete()
 .eq('id', id) // 'column' and 'value to target'
 
@@ -41,7 +44,7 @@ return; // to stop the function here
 //Update fucntion:
 const updateTask = async (id: number) => {
 const { error } = await supabase
-.from('tasks')
+.from(tableName)
 .update({title: newTitle, description: newDesc})
 .eq('id', id) // 'column' and 'value to target'
 
@@ -57,7 +60,7 @@ return; // to stop the function here
 // Read function:
 const fetchTask = async () => {
 const {error: fecthError, data} = await supabase
-.from('tasks')
+.from(tableName)
 .select('*') // all data to be "selected"
 .order('created_at', {ascending: false})
 
@@ -77,7 +80,7 @@ e.preventDefault();
 const { error } = await supabase
 //what table name?, what table name to target or use?
 //what table or table name?
-.from('tasks')
+.from(tableName)
 //unsa atong e insert sa table?, what do put inside the table and what to target?
 //target: 'column'
 .insert(newTask)
